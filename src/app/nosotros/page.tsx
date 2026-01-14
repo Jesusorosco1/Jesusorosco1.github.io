@@ -72,9 +72,9 @@ export default function CatalogoPage() {
           {/* Bloque 3: Cierre de Biografía */}
           <div className="bg-gray-50 p-8 rounded-xl border-l-4 border-[#007fb2]">
             <Typography className="text-gray-700 italic text-lg">
-              "Esta nueva adquisición nos permitirá incrementar significativamente nuestra producción de vehículos, 
+              &quot;Esta nueva adquisición nos permitirá incrementar significativamente nuestra producción de vehículos, 
               reafirmando nuestro compromiso con el mercado venezolano y fortaleciendo nuestro liderazgo en la industria 
-              automotriz del país", manifestó el señor Sergio González, presidente de Corporación BEL y JAC Motors en el país.
+              automotriz del país&quot;, manifestó el señor Sergio González, presidente de Corporación BEL y JAC Motors en el país.
             </Typography>
           </div>
 
