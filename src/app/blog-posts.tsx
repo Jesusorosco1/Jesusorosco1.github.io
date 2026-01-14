@@ -34,54 +34,64 @@ const SIMPLE_CONTENT = [
 ];
 
 export function BlogPost() {
+  // Parche para evitar errores de tipos en Vercel
+  const fixProps = {
+    placeholder: "",
+    onPointerEnterCapture: () => {},
+    onPointerLeaveCapture: () => {},
+    onResize: () => {},
+    onResizeCapture: () => {},
+  } as any;
+
   return (
     <section className="w-full max-w-6xl mx-auto flex flex-col items-center px-4 py-20">
-      <Button color="gray" className="mb-3" size="sm">
+      <Button color="gray" className="mb-3" size="sm" {...fixProps}>
         BLOG
       </Button>
-      <Typography variant="h3" className="text-center" color="blue-gray">
+      <Typography variant="h3" className="text-center" color="blue-gray" {...fixProps}>
         Check out the latest articles
       </Typography>
       <Typography
         variant="lead"
         className="mt-2 mb-8 w-full text-center font-normal !text-gray-500 max-w-4xl"
+        {...fixProps}
       >
         Stay at the forefront of the latest developments in the world of
         biology, as our team of expert writers and researchers bring you fresh
         insights, groundbreaking discoveries, and captivating stories from the
         ever-evolving realm of biological sciences.
       </Typography>
+
       <div className="mt-10 gap-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
         <div className=" md:border-r px-3 border-blue-gray-100">
           <div className="!border-b  border-blue-gray-100 mb-5">
-            <Card shadow={false} className="p-0">
-              <CardBody className="p-0 pb-5">
+            <Card shadow={false} className="p-0" {...fixProps}>
+              <CardBody className="p-0 pb-5" {...fixProps}>
                 <Typography
                   variant="h3"
                   className="leading-[45px] mb-4 !text-gray-900 "
+                  {...fixProps}
                 >
                   Exploring the Role of Epigenetics in Inherited Traits
                 </Typography>
-                <Typography className="text-normal mb-4 !text-base text-blue-gray-500 ">
+                <Typography className="text-normal mb-4 !text-base text-blue-gray-500 " {...fixProps}>
                   Investigate the emerging field of epigenetics and its impact
                   on understanding how environmental factors can influence gene
                   expression and inheritance.
                 </Typography>
                 <div className="flex items-center gap-3">
-                  <div className="">
-                    <Image
-                      width={256}
-                      height={256}
-                      src="/image/avatar2.jpg"
-                      className="w-12 object-cover h-12 rounded-lg"
-                      alt="photo"
-                    />
-                  </div>
+                  <Image
+                    width={256}
+                    height={256}
+                    src="/image/avatar2.jpg"
+                    className="w-12 object-cover h-12 rounded-lg"
+                    alt="photo"
+                  />
                   <div>
-                    <Typography className="!font-bold !text-sm text-gray-900">
+                    <Typography className="!font-bold !text-sm text-gray-900" {...fixProps}>
                       Mathew Glock
                     </Typography>
-                    <Typography className="!font-normal !text-xs text-gray-500">
+                    <Typography className="!font-normal !text-xs text-gray-500" {...fixProps}>
                       Author
                     </Typography>
                   </div>
@@ -90,32 +100,31 @@ export function BlogPost() {
             </Card>
           </div>
           <div className="!border-b md:border-none border-blue-gray-100 mb-5">
-            <Card shadow={false} className="p-0">
-              <CardBody className="p-0 pb-5">
+            <Card shadow={false} className="p-0" {...fixProps}>
+              <CardBody className="p-0 pb-5" {...fixProps}>
                 <Typography
                   variant="h3"
                   className="leading-[45px] mb-4 !text-gray-900 "
+                  {...fixProps}
                 >
                   How Gut Bacteria Affect Our Health and Well-being
                 </Typography>
-                <Typography className="text-normal mb-4 !text-base text-blue-gray-500 ">
+                <Typography className="text-normal mb-4 !text-base text-blue-gray-500 " {...fixProps}>
                   Dive into the latest research on the human microbiome.
                 </Typography>
                 <div className="flex items-center gap-3">
-                  <div className="">
-                    <Image
-                      width={256}
-                      height={256}
-                      src="/image/avatar1.jpg"
-                      className="w-12 object-cover h-12 rounded-lg"
-                      alt="photo"
-                    />
-                  </div>
+                  <Image
+                    width={256}
+                    height={256}
+                    src="/image/avatar1.jpg"
+                    className="w-12 object-cover h-12 rounded-lg"
+                    alt="photo"
+                  />
                   <div>
-                    <Typography className="!font-bold !text-sm text-gray-900">
+                    <Typography className="!font-bold !text-sm text-gray-900" {...fixProps}>
                       Mathew Glock
                     </Typography>
-                    <Typography className="!font-normal !text-xs text-gray-500">
+                    <Typography className="!font-normal !text-xs text-gray-500" {...fixProps}>
                       Author
                     </Typography>
                   </div>
@@ -129,8 +138,8 @@ export function BlogPost() {
         </div>
         <div className="md:border-l px-3 border-blue-gray-100">
           <div className="!border-b  border-blue-gray-100 mb-6">
-            <Card shadow={false} className="p-0">
-              <CardBody className="p-0 pb-5">
+            <Card shadow={false} className="p-0" {...fixProps}>
+              <CardBody className="p-0 pb-5" {...fixProps}>
                 <div className="w-full mb-4 h-[149px] ">
                   <Image
                     width={768}
@@ -143,18 +152,19 @@ export function BlogPost() {
                 <Typography
                   variant="h3"
                   className="leading-[45px] mb-6 !text-gray-900"
+                  {...fixProps}
                 >
                   Biomimicry: Nature-Inspired Innovations
                 </Typography>
-                <Typography className="!font-bold !text-sm text-gray-700">
+                <Typography className="!font-bold !text-sm text-gray-700" {...fixProps}>
                   by Mathew Glock
                 </Typography>
               </CardBody>
             </Card>
           </div>
           <div className="!border-b md:border-none border-blue-gray-100 mb-6">
-            <Card shadow={false} className="p-0">
-              <CardBody className="p-0 pb-5">
+            <Card shadow={false} className="p-0" {...fixProps}>
+              <CardBody className="p-0 pb-5" {...fixProps}>
                 <div className="w-full mb-4 h-[149px]">
                   <Image
                     width={768}
@@ -167,10 +177,11 @@ export function BlogPost() {
                 <Typography
                   variant="h3"
                   className="leading-[45px] mb-6 !text-gray-900"
+                  {...fixProps}
                 >
                   Bringing Back Extinct Species
                 </Typography>
-                <Typography className="!font-bold !text-sm text-gray-700">
+                <Typography className="!font-bold !text-sm text-gray-700" {...fixProps}>
                   by Emma Roberts
                 </Typography>
               </CardBody>
