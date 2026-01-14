@@ -7,7 +7,7 @@ import {
   IconButton,
   Typography,
 } from "@material-tailwind/react";
-import Image from "next/image"; // Importación correcta del componente Image
+import Image from "next/image";
 import Link from "next/link";
 import { 
   Bars3Icon, 
@@ -25,6 +25,15 @@ const NAV_MENU = [
   { name: "Mundo JAC", href: "/nosotros" }
 ];
 
+// Definimos fixProps fuera para reutilizarlo
+const fixProps = {
+  placeholder: "",
+  onPointerEnterCapture: () => {},
+  onPointerLeaveCapture: () => {},
+  onResize: () => {},
+  onResizeCapture: () => {},
+} as any;
+
 function NavItem({ label, href }: { label: string; href: string }) {
   return (
     <li>
@@ -33,9 +42,7 @@ function NavItem({ label, href }: { label: string; href: string }) {
           as="span"
           variant="small"
           className="font-medium transition-colors hover:text-gray-400 cursor-pointer"
-          placeholder=""
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
+          {...fixProps}
         >
           {label}
         </Typography>
@@ -51,10 +58,9 @@ export function Navbar() {
   const handleOpen = () => setOpen((cur) => !cur);
 
   React.useEffect(() => {
-    window.addEventListener(
-      "resize",
-      () => window.innerWidth >= 960 && setOpen(false)
-    );
+    const handleResize = () => window.innerWidth >= 960 && setOpen(false);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   React.useEffect(() => {
@@ -74,21 +80,19 @@ export function Navbar() {
       className={`fixed top-0 z-50 border-0 transition-all ${
         isScrolling ? "bg-black/90 py-2" : "bg-black py-4"
       }`}
-      placeholder=""
-      onPointerEnterCapture={() => {}}
-      onPointerLeaveCapture={() => {}}
+      {...fixProps}
     >
       <div className="container mx-auto flex items-center justify-between text-white">
         
-        {/* LOGO CORREGIDO: Se añadió el componente Image con dimensiones requeridas */}
+        {/* LOGO */}
         <Link href="/" className="cursor-pointer">
           <Image 
             src="/image/logoJac2.jpg" 
             alt="logo JAC Motors" 
-            width={128} // Corresponde a w-32 (32 * 4px)
-            height={40} // Altura proporcional para evitar deformación
+            width={128} 
+            height={40} 
             className="hover:opacity-80 transition-opacity"
-            priority // Carga el logo con prioridad para mejorar el LCP
+            priority 
           />
         </Link>
 
@@ -112,9 +116,7 @@ export function Navbar() {
           color="white"
           onClick={handleOpen}
           className="ml-auto inline-block lg:hidden"
-          placeholder=""
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
+          {...fixProps}
         >
           {open ? (
             <XMarkIcon strokeWidth={2} className="h-6 w-6" />
@@ -124,7 +126,7 @@ export function Navbar() {
         </IconButton>
       </div>
 
-      <Collapse open={open}>
+      <Collapse open={open} {...fixProps}>
         <div className="container mx-auto mt-4 border-t border-gray-800 px-4 pt-4 text-white lg:hidden">
           <ul className="flex flex-col gap-4">
             {NAV_MENU.map((item) => (

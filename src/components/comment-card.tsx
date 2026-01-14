@@ -1,3 +1,6 @@
+"use client";
+
+import React from "react";
 import Image from "next/image";
 import {
   Typography,
@@ -8,7 +11,6 @@ import {
 import { ArrowUturnLeftIcon } from "@heroicons/react/24/outline";
 import { HeartIcon } from "@heroicons/react/24/solid";
 
-
 interface CommentCardProps {
   img: string;
   name: string;
@@ -17,14 +19,24 @@ interface CommentCardProps {
 }
 
 export function CommentCard({ img, name, desc, hours }: CommentCardProps) {
+  // Parche para evitar errores de tipos en Vercel
+  const fixProps = {
+    placeholder: "",
+    onPointerEnterCapture: () => {},
+    onPointerLeaveCapture: () => {},
+    onResize: () => {},
+    onResizeCapture: () => {},
+  } as any;
+
   return (
     <Card
       shadow={false}
       color="transparent"
-      className="grid items-center gap-6 "
+      className="grid items-center gap-6"
+      {...fixProps}
     >
-      <CardBody className="p-0 gap-5 flex ">
-        <div className=" !m-0 h-full  w-full  max-h-[40px] max-w-[40px] ">
+      <CardBody className="p-0 gap-5 flex" {...fixProps}>
+        <div className="!m-0 h-full w-full max-h-[40px] max-w-[40px]">
           <Image
             width={768}
             height={768}
@@ -37,15 +49,23 @@ export function CommentCard({ img, name, desc, hours }: CommentCardProps) {
           <div className="flex gap-1 mb-3 items-center">
             <Typography
               variant="small"
-              className=" font-bold flex items-center gap-2 !text-gray-900"
+              className="font-bold flex items-center gap-2 !text-gray-900"
+              {...fixProps}
             >
               {name}
             </Typography>
-            <Typography variant="small" className="font-medium !text-gray-500">
+            <Typography 
+              variant="small" 
+              className="font-medium !text-gray-500"
+              {...fixProps}
+            >
               {hours}
             </Typography>
           </div>
-          <Typography className="w-full font-normal mb-4 !text-gray-500">
+          <Typography 
+            className="w-full font-normal mb-4 !text-gray-500"
+            {...fixProps}
+          >
             {desc}
           </Typography>
           <div className="!w-full flex justify-end">
@@ -55,6 +75,7 @@ export function CommentCard({ img, name, desc, hours }: CommentCardProps) {
                 variant="text"
                 color="gray"
                 className="flex items-center gap-1 flex-shrink-0"
+                {...fixProps}
               >
                 <ArrowUturnLeftIcon className="w-4 text-4 h-4" />
                 Reply
@@ -64,6 +85,7 @@ export function CommentCard({ img, name, desc, hours }: CommentCardProps) {
                 variant="text"
                 color="red"
                 className="flex items-center gap-1 flex-shrink-0"
+                {...fixProps}
               >
                 <HeartIcon className="w-4 text-4 h-4" />
                 Reply
@@ -76,4 +98,4 @@ export function CommentCard({ img, name, desc, hours }: CommentCardProps) {
   );
 }
 
-  export default CommentCard;
+export default CommentCard;

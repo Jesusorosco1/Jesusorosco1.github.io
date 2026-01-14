@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import {
@@ -7,7 +9,6 @@ import {
   CardBody,
   Avatar,
 } from "@material-tailwind/react";
-
 
 interface BlogPostCardProps {
   img: string;
@@ -26,9 +27,18 @@ export function BlogPostCard({
   author,
   date,
 }: BlogPostCardProps) {
+  // Parche para evitar errores de tipos en Vercel
+  const fixProps = {
+    placeholder: "",
+    onPointerEnterCapture: () => {},
+    onPointerLeaveCapture: () => {},
+    onResize: () => {},
+    onResizeCapture: () => {},
+  } as any;
+
   return (
-    <Card shadow={true}>
-      <CardHeader>
+    <Card shadow={true} {...fixProps}>
+      <CardHeader {...fixProps}>
         <Image
           width={768}
           height={768}
@@ -37,8 +47,13 @@ export function BlogPostCard({
           className="h-full w-full scale-110 object-cover"
         />
       </CardHeader>
-      <CardBody className="p-6">
-        <Typography variant="small" color="blue" className="mb-2 !font-medium">
+      <CardBody className="p-6" {...fixProps}>
+        <Typography 
+          variant="small" 
+          color="blue" 
+          className="mb-2 !font-medium"
+          {...fixProps}
+        >
           {tag}
         </Typography>
         <Typography
@@ -47,10 +62,14 @@ export function BlogPostCard({
           variant="h5"
           color="blue-gray"
           className="mb-2 normal-case transition-colors hover:text-gray-900"
+          {...fixProps}
         >
           {title}
         </Typography>
-        <Typography className="mb-6 font-normal !text-gray-500">
+        <Typography 
+          className="mb-6 font-normal !text-gray-500"
+          {...fixProps}
+        >
           {desc}
         </Typography>
         <div className="flex items-center gap-4">
@@ -59,12 +78,14 @@ export function BlogPostCard({
             variant="circular"
             src={author.img}
             alt={author.name}
+            {...fixProps}
           />
           <div>
             <Typography
               variant="small"
               color="blue-gray"
               className="mb-0.5 !font-medium"
+              {...fixProps}
             >
               {author.name}
             </Typography>
@@ -72,6 +93,7 @@ export function BlogPostCard({
               variant="small"
               color="gray"
               className="text-xs !text-gray-500 font-normal"
+              {...fixProps}
             >
               {date}
             </Typography>
@@ -81,6 +103,5 @@ export function BlogPostCard({
     </Card>
   );
 }
-
 
 export default BlogPostCard;

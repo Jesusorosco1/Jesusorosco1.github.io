@@ -83,6 +83,15 @@ const LEGAL_LINKS = [
 ];
 
 export function Footer() {
+  // Parche para evitar errores de tipos en Vercel
+  const fixProps = {
+    placeholder: "",
+    onPointerEnterCapture: () => {},
+    onPointerLeaveCapture: () => {},
+    onResize: () => {},
+    onResizeCapture: () => {},
+  } as any;
+
   return (
     <footer className="w-full bg-[#e3e4e4] px-8 pt-20 pb-12 text-gray-900">
       <div className="container mx-auto">
@@ -98,13 +107,22 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-12 mb-20">
           {FOOTER_COLUMNS.map((col) => (
             <div key={col.title}>
-              <Typography variant="h6" className="mb-6 font-bold text-sm uppercase" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+              <Typography 
+                variant="h6" 
+                className="mb-6 font-bold text-sm uppercase" 
+                {...fixProps}
+              >
                 {col.title}
               </Typography>
               <ul className="flex flex-col gap-3">
                 {col.links.map((link) => (
                   <li key={link}>
-                    <Typography as="a" href="#" className="text-xs font-medium text-gray-700 hover:text-black transition-colors" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+                    <Typography 
+                      as="a" 
+                      href="#" 
+                      className="text-xs font-medium text-gray-700 hover:text-black transition-colors" 
+                      {...fixProps}
+                    >
                       {link}
                     </Typography>
                   </li>
@@ -117,7 +135,13 @@ export function Footer() {
         {/* Redes Sociales */}
         <div className="flex justify-end gap-4 mb-10">
           {SOCIAL_LINKS.map((icon, idx) => (
-            <IconButton key={idx} variant="text" size="sm" className="bg-gray-300/50 hover:bg-gray-400/50 rounded-full" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+            <IconButton 
+              key={idx} 
+              variant="text" 
+              size="sm" 
+              className="bg-gray-300/50 hover:bg-gray-400/50 rounded-full" 
+              {...fixProps}
+            >
               <i className={`${icon} text-sm text-gray-900`} />
             </IconButton>
           ))}
@@ -127,13 +151,23 @@ export function Footer() {
 
         {/* Copyright y Legal */}
         <div className="flex flex-col gap-6">
-          <Typography variant="small" className="text-[11px] font-normal text-gray-600" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+          <Typography 
+            variant="small" 
+            className="text-[11px] font-normal text-gray-600" 
+            {...fixProps}
+          >
             © 2026. JAC VENEZUELA división de venta.
           </Typography>
           
           <div className="flex flex-wrap gap-x-6 gap-y-2">
             {LEGAL_LINKS.map((link) => (
-              <Typography key={link} as="a" href="#" className="text-[11px] font-bold text-gray-900 hover:underline" placeholder="" onPointerEnterCapture={() => {}} onPointerLeaveCapture={() => {}}>
+              <Typography 
+                key={link} 
+                as="a" 
+                href="#" 
+                className="text-[11px] font-bold text-gray-900 hover:underline" 
+                {...fixProps}
+              >
                 {link}
               </Typography>
             ))}

@@ -2,7 +2,7 @@
 import React from "react";
 import { Button } from "@material-tailwind/react";
 
-// Importamos los iconos (puedes usar FontAwesome o SVGs simples)
+// Importamos los iconos
 const SOCIAL_LINKS = [
   {
     name: "Facebook",
@@ -34,12 +34,21 @@ const SOCIAL_LINKS = [
 ];
 
 export function FixedPlugin() {
+  // Parche para evitar errores de tipos en Vercel
+  const fixProps = {
+    placeholder: "",
+    onPointerEnterCapture: () => {},
+    onPointerLeaveCapture: () => {},
+    onResize: () => {},
+    onResizeCapture: () => {},
+  } as any;
+
   return (
     <div className="fixed bottom-6 right-6 flex flex-col gap-3 z-[9999]">
       {SOCIAL_LINKS.map((social) => (
         <a 
           key={social.name} 
-     
+          href={social.href}
           target="_blank" 
           rel="noopener noreferrer"
         >
@@ -47,9 +56,7 @@ export function FixedPlugin() {
             color="white"
             size="sm"
             className="flex h-12 w-12 items-center justify-center rounded-full border border-blue-gray-50 p-0 shadow-xl hover:scale-110 transition-transform"
-            placeholder=""
-            onPointerEnterCapture={() => {}}
-            onPointerLeaveCapture={() => {}}
+            {...fixProps}
           >
             <div className="text-blue-gray-900">
               {social.icon}
