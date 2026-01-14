@@ -23,7 +23,7 @@ export default function CatalogoPage() {
       id: 1,
       title: "Diseño Aerodinámico",
       description: "Las líneas fluidas del nuevo Arena Sport no solo cautivan la mirada, sino que optimizan el flujo de aire para una eficiencia superior y una estabilidad inigualable en carretera.",
-      image: "/image/jacrojo8.webp  ",
+      image: "/image/jacrojo8.webp",
     },
     {
       id: 2,
