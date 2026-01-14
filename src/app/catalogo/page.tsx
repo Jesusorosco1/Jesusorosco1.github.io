@@ -6,6 +6,15 @@ import { Typography, Button } from "@material-tailwind/react";
 import { Navbar, Footer } from "@/components"; 
 
 export default function CatalogoPage() {
+  // Parche para evitar errores de tipos en Vercel
+  const fixProps = {
+    placeholder: "",
+    onPointerEnterCapture: () => {},
+    onPointerLeaveCapture: () => {},
+    onResize: () => {},
+    onResizeCapture: () => {},
+  } as any;
+
   // Estado para controlar la navegación numérica
   const [activeTab, setActiveTab] = useState(0);
 
@@ -73,6 +82,7 @@ export default function CatalogoPage() {
                 variant="h1"
                 color="white"
                 className="mb-2 text-5xl font-bold tracking-tight md:text-7xl uppercase"
+                {...fixProps}
               >
                 Nuevo Arena Sport
               </Typography>
@@ -81,6 +91,7 @@ export default function CatalogoPage() {
                 variant="lead"
                 color="white"
                 className="mb-10 text-xl opacity-90 font-light"
+                {...fixProps}
               >
                 Dinamismo sin límites.
               </Typography>
@@ -89,12 +100,14 @@ export default function CatalogoPage() {
                 <Button
                   size="lg"
                   className="rounded-full bg-white/20 backdrop-blur-sm border border-white/30 px-8 py-3 text-xs font-bold normal-case hover:bg-white hover:text-black transition-all"
+                  {...fixProps}
                 >
                   Automático
                 </Button>
                 <Button
                   size="lg"
                   className="rounded-full bg-black px-8 py-3 text-xs font-bold normal-case hover:bg-gray-900 transition-all"
+                  {...fixProps}
                 >
                   Eléctrico
                 </Button>
@@ -145,10 +158,14 @@ export default function CatalogoPage() {
                 variant="h3"
                 color="white"
                 className="mb-4 text-3xl font-semibold"
+                {...fixProps}
               >
                 {FEATURES_DATA[activeTab].title}
               </Typography>
-              <Typography className="font-normal text-gray-400 leading-relaxed">
+              <Typography 
+                className="font-normal text-gray-400 leading-relaxed"
+                {...fixProps}
+              >
                 {FEATURES_DATA[activeTab].description}
               </Typography>
             </div>
@@ -166,21 +183,24 @@ export default function CatalogoPage() {
         </div>
       </section>
 
+      {/* SECCIÓN DE COLOR */}
       <section className="bg-black py-24 px-8">
       <div className="container mx-auto text-center">
-        {/* Título con estilo JAC */}
         <Typography
           variant="h2"
           className="mb-4 text-3xl font-bold uppercase tracking-widest text-[#00f2ff]"
+          {...fixProps}
         >
           ¿Cuál color prefieres?
         </Typography>
         
-        <Typography className="mb-12 text-gray-400 font-light">
+        <Typography 
+          className="mb-12 text-gray-400 font-light"
+          {...fixProps}
+        >
           Personaliza tu nuevo <span className="text-white font-medium">Arena Sport</span>
         </Typography>
 
-        {/* Contenedor de la Imagen con transición suave */}
         <div className="relative mx-auto mb-16 h-[300px] w-full max-w-4xl md:h-[500px]">
           <Image
             src={selectedColor.img}
@@ -191,7 +211,6 @@ export default function CatalogoPage() {
           />
         </div>
 
-        {/* Selector de Círculos */}
         <div className="flex justify-center gap-6">
           {colors.map((color) => (
             <button
@@ -207,8 +226,6 @@ export default function CatalogoPage() {
               <span 
                 className={`absolute inset-1 rounded-full ${color.hex} shadow-inner`}
               />
-              
-              {/* Etiqueta flotante con el nombre del color */}
               <span className="absolute -bottom-10 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs text-gray-500 opacity-0 transition-opacity group-hover:opacity-100">
                 {color.name}
               </span>
