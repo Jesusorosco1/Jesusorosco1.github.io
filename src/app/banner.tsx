@@ -28,6 +28,15 @@ export function PromoBanner() {
     },
   ];
 
+  // Definimos un objeto con todas las propiedades que molestan a Vercel
+  const fixProps = {
+    placeholder: "",
+    onPointerEnterCapture: () => {},
+    onPointerLeaveCapture: () => {},
+    onResize: () => {},
+    onResizeCapture: () => {},
+  } as any;
+
   return (
     <section className="relative w-full overflow-hidden bg-[#0f1114] pb-20">
       
@@ -47,9 +56,7 @@ export function PromoBanner() {
               variant="h2"
               color="white"
               className="mb-2 text-3xl font-medium tracking-tight md:text-5xl"
-              placeholder=""
-              onPointerEnterCapture={() => {}}
-              onPointerLeaveCapture={() => {}}
+              {...fixProps}
             >
             JAC Venezuela
             </Typography>
@@ -58,9 +65,7 @@ export function PromoBanner() {
               variant="lead"
               color="white"
               className="mb-8 text-base font-normal opacity-90 md:text-lg"
-              placeholder=""
-              onPointerEnterCapture={() => {}}
-              onPointerLeaveCapture={() => {}}
+              {...fixProps}
             >
               Descubre los Jac personalizados de este año.
             </Typography>
@@ -68,9 +73,7 @@ export function PromoBanner() {
             <Button
               size="md"
               className="rounded-full bg-gray-500/80 px-8 py-2.5 text-xs font-bold normal-case hover:bg-white hover:text-black transition-colors"
-              placeholder=""
-              onPointerEnterCapture={() => {}}
-              onPointerLeaveCapture={() => {}}
+              {...fixProps}
             >
               Saber más
             </Button>
@@ -83,9 +86,7 @@ export function PromoBanner() {
         <Typography 
           variant="h2" 
           className="text-white text-center text-3xl font-light mb-12"
-          placeholder=""
-          onPointerEnterCapture={() => {}}
-          onPointerLeaveCapture={() => {}}
+          {...fixProps}
         >
           Contenidos destacados
         </Typography>
@@ -109,9 +110,7 @@ export function PromoBanner() {
                 <Typography 
                   variant="h3" 
                   className="text-white text-xl md:text-2xl font-semibold mb-6 tracking-wide"
-                  placeholder=""
-                  onPointerEnterCapture={() => {}}
-                  onPointerLeaveCapture={() => {}}
+                  {...fixProps}
                 >
                   {item.title}
                 </Typography>
@@ -119,9 +118,7 @@ export function PromoBanner() {
                 <Button
                   size="sm"
                   className="rounded-full bg-white/10 backdrop-blur-md border border-white/30 px-10 py-3 text-xs font-bold capitalize hover:bg-white hover:text-black transition-all duration-300"
-                  placeholder=""
-                  onPointerEnterCapture={() => {}}
-                  onPointerLeaveCapture={() => {}}
+                  {...fixProps}
                 >
                   {item.buttonText}
                 </Button>
