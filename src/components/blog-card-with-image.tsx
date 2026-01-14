@@ -1,14 +1,26 @@
-import Image from "next/image";
+"use client";
 
+import React from "react";
+import Image from "next/image";
 import { Typography, Card, CardBody } from "@material-tailwind/react";
 
 export function BlogCardWithImage() {
+  // Parche para evitar errores de tipos en Vercel
+  const fixProps = {
+    placeholder: "",
+    onPointerEnterCapture: () => {},
+    onPointerLeaveCapture: () => {},
+    onResize: () => {},
+    onResizeCapture: () => {},
+  } as any;
+
   return (
     <Card
       shadow={false}
       className="pb-5 p-0 !border-b md:border-none border-blue-gray-100"
+      {...fixProps}
     >
-      <CardBody className="p-0 ">
+      <CardBody className="p-0" {...fixProps}>
         <div className="w-full mb-4 h-[211px] ">
           <Image
             width={768}
@@ -18,10 +30,17 @@ export function BlogCardWithImage() {
             alt=""
           />
         </div>
-        <Typography variant="h3" className="leading-[45px] mb-4 !text-gray-900">
+        <Typography 
+          variant="h3" 
+          className="leading-[45px] mb-4 !text-gray-900"
+          {...fixProps}
+        >
           How to Build a $24 Billion Dollar Company in Just 2 Years.
         </Typography>
-        <Typography className="font-normal mb-4 !text-base text-gray-500 ">
+        <Typography 
+          className="font-normal mb-4 !text-base text-gray-500"
+          {...fixProps}
+        >
           I&apos;ve come to the conclusion that 50% of folks in this world
           don&apos;t even spend enough time alone with their thoughts to have
           their own opinions. They haven&apos;t done the work to decide what
@@ -38,10 +57,16 @@ export function BlogCardWithImage() {
             />
           </div>
           <div>
-            <Typography className="!font-bold !text-sm text-gray-900">
+            <Typography 
+              className="!font-bold !text-sm text-gray-900"
+              {...fixProps}
+            >
               Andrew Peterson
             </Typography>
-            <Typography className="!font-normal !text-xs text-gray-500 ">
+            <Typography 
+              className="!font-normal !text-xs text-gray-500"
+              {...fixProps}
+            >
               Redactor
             </Typography>
           </div>
