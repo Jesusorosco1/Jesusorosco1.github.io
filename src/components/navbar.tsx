@@ -7,6 +7,7 @@ import {
   IconButton,
   Typography,
 } from "@material-tailwind/react";
+import Image from "next/image"; // Importación correcta del componente Image
 import Link from "next/link";
 import { 
   Bars3Icon, 
@@ -16,7 +17,6 @@ import {
   UserIcon 
 } from "@heroicons/react/24/outline";
 
-// 1. Definimos el menú con sus rutas correspondientes
 const NAV_MENU = [
   { name: "Modelos", href: "/catalogo" },
   { name: "Compra", href: "/catalogo" },
@@ -25,13 +25,12 @@ const NAV_MENU = [
   { name: "Mundo JAC", href: "/nosotros" }
 ];
 
-// 2. Actualizamos NavItem para usar Link de Next.js
 function NavItem({ label, href }: { label: string; href: string }) {
   return (
     <li>
       <Link href={href}>
         <Typography
-          as="span" // Usamos "span" para que el Link sea el que maneje el clic
+          as="span"
           variant="small"
           className="font-medium transition-colors hover:text-gray-400 cursor-pointer"
           placeholder=""
@@ -81,12 +80,15 @@ export function Navbar() {
     >
       <div className="container mx-auto flex items-center justify-between text-white">
         
-        {/* LOGO con Link a Home */}
+        {/* LOGO CORREGIDO: Se añadió el componente Image con dimensiones requeridas */}
         <Link href="/" className="cursor-pointer">
-          <img 
+          <Image 
             src="/image/logoJac2.jpg" 
-            alt="logo" 
-            className="w-32 hover:opacity-80 transition-opacity" 
+            alt="logo JAC Motors" 
+            width={128} // Corresponde a w-32 (32 * 4px)
+            height={40} // Altura proporcional para evitar deformación
+            className="hover:opacity-80 transition-opacity"
+            priority // Carga el logo con prioridad para mejorar el LCP
           />
         </Link>
 
@@ -122,7 +124,6 @@ export function Navbar() {
         </IconButton>
       </div>
 
-      {/* MENÚ DESPLEGABLE (Móvil) */}
       <Collapse open={open}>
         <div className="container mx-auto mt-4 border-t border-gray-800 px-4 pt-4 text-white lg:hidden">
           <ul className="flex flex-col gap-4">
