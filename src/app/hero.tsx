@@ -4,6 +4,15 @@ import React from "react";
 import { Typography, Button } from "@material-tailwind/react";
 
 function Hero() {
+  // Parche completo para todos los componentes de Material Tailwind
+  const fixProps = {
+    placeholder: "",
+    onPointerEnterCapture: () => {},
+    onPointerLeaveCapture: () => {},
+    onResize: () => {},
+    onResizeCapture: () => {},
+  } as any;
+
   return (
     <div className="relative min-h-screen w-full bg-[url('/image/carrojac3.jpg')] bg-cover bg-center bg-no-repeat">
       {/* Overlay oscuro para que el texto resalte */}
@@ -16,44 +25,34 @@ function Hero() {
             variant="h1"
             color="white"
             className="mb-2 text-4xl font-normal tracking-tight md:text-5xl"
-            placeholder=""
-            onPointerEnterCapture={() => {}}
-            onPointerLeaveCapture={() => {}}
+            {...fixProps}
           >
-           Nuevo Arena Sport
+            Nuevo Arena Sport
           </Typography>
 
-      
           <Typography
             variant="lead"
             color="white"
             className="mb-10 text-lg opacity-90"
-            placeholder=""
-            onPointerEnterCapture={() => {}}
-            onPointerLeaveCapture={() => {}}
+            {...fixProps}
           >
             Dinamismo sin límites.
           </Typography>
 
-      
           <div className="flex flex-wrap gap-4">
             <Button
               size="lg"
               className="rounded-full bg-gray-500/80 px-8 py-3 text-xs font-bold normal-case hover:bg-gray-400"
-              placeholder=""
-              onPointerEnterCapture={() => {}}
-              onPointerLeaveCapture={() => {}}
+              {...fixProps}
             >
-              Automarico
+              Automático
             </Button>
             <Button
               size="lg"
               className="rounded-full bg-black/80 px-8 py-3 text-xs font-bold normal-case hover:bg-black"
-              placeholder=""
-              onPointerEnterCapture={() => {}}
-              onPointerLeaveCapture={() => {}}
+              {...fixProps}
             >
-              Electrico
+              Eléctrico
             </Button>
           </div>
         </div>
